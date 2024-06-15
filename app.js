@@ -13,9 +13,17 @@
 
         function handleButtonAnimationForMenuOpen() {
             MENU_BUTTON.addEventListener("click", event => {
-                const MENU_BTN_CLASSNAME = MENU_BUTTON.getAttribute("class");
-                MENU_BUTTON.classList.add(`${MENU_BTN_CLASSNAME}Too`);
+                 assignNewClassName(MENU_BUTTON);
+            for (let eachMenuButtonLine of MENU_BUTTON_LINES) {
+                assignNewClassName(eachMenuButtonLine);
+            }
             });
+         
+        }
+
+        function assignNewClassName(target) {
+            const ITEM_CLASSNAME = target.getAttribute("class");
+            target.classList.add(`${ITEM_CLASSNAME}Too`);
         }
         handleButtonAnimationForMenuOpen();
     }

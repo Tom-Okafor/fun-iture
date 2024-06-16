@@ -311,7 +311,7 @@ header li {
 }
 
 .lineTwoReverse {
-    animation: reverseLineTwo 1.75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseLineTwo 2.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseLineTwo {
@@ -338,7 +338,7 @@ header li {
         width: 2.7em;
         opacity: 0;
     }
-    65% {
+    60% {
         transform: translateX(-5em);
         opacity: 0.5;
     }
@@ -351,7 +351,7 @@ header li {
 }
 
 .lineThreeReverse {
-    animation: reverseLineThree 1.65s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseLineThree 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseLineThree {
@@ -373,7 +373,7 @@ header li {
         width: 1.3em;
         opacity: 0;
     }
-    65% {
+    60% {
         transform: translateX(3em);
         opacity: 0.5;
     }
@@ -408,7 +408,7 @@ header li {
         width: 1.8em;
         opacity: 0;
     }
-    65% {
+    60% {
         transform: translateX(5em);
         opacity: 0.5;
     }
@@ -975,6 +975,7 @@ a {
     backdrop-filter: blur(5px);
     transform: translateY(-200%);
     overflow: hidden;
+    outline: transparent;
 }
 
 .menu-grid {
@@ -1438,108 +1439,224 @@ footer {
     }
 
     @keyframes animateMenu {
+        48% {
+            flex-direction: column;
+        }
+        50% {
+            flex-direction: row;
+            justify-content: center;
+            align-items: baseline;
+        }
+        60% {
+            gap: 1em;
+        }
         100% {
+            flex-direction: row;
+            justify-content: center;
+            align-items: baseline;
             gap: 0.35em;
         }
     }
     @keyframes animateLineTwo {
         40% {
+            opacity: 0;
             height: 0.165em;
             width: 3.2em;
+            transform: translateX(-5em);
         }
 
+        45% {
+            transform: translateX(0em);
+        }
         60% {
             width: 0.165em;
             height: 3.2em;
+            opacity: 0;
         }
-
+        80% {
+            transform: translateY(-1em);
+        }
         100% {
             width: 0.165em;
             height: 3.2em;
+            opacity: 1;
+            transform: translateY(0em);
         }
     }
     @keyframes animateLineThree {
         40% {
+            transform: translateX(10em);
+            opacity: 0;
             height: 0.16em;
             width: 2em;
         }
-
+        45% {
+            transform: translateX(0em);
+        }
         60% {
             width: 0.16em;
             height: 2em;
+            opacity: 0;
         }
-
+        80% {
+            transform: translateY(1em);
+        }
         100% {
             width: 0.16em;
             height: 2em;
+            opacity: 1;
+            transform: translateY(0em);
         }
     }
     @keyframes animateLineOne {
         40% {
+            transform: translateX(10em);
+            opacity: 0;
             height: 0.16em;
             width: 2.45em;
+        }
+        45% {
+            transform: translateX(0em);
         }
         60% {
             width: 0.16em;
             height: 2.45em;
+            opacity: 0;
         }
-
+        80% {
+            transform: translateY(1em);
+        }
         100% {
             width: 0.16em;
             height: 2.45em;
+            opacity: 1;
+            transform: translateY(0em);
         }
     }
     @keyframes reverseMenu {
+        0% {
+            flex-direction: row;
+            justify-content: center;
+            align-items: baseline;
+            gap: 0.35em;
+        }
+        48% {
+            flex-direction: row;
+        }
+        50% {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        60% {
+            gap: 1em;
+        }
+        85% {
+            gap: 1em;
+        }
         100% {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
             gap: 0.35em;
         }
     }
 
     @keyframes reverseLineTwo {
-        40% {
+        0% {
             width: 0.165em;
             height: 3.2em;
+            opacity: 1;
+            transform: translateY(0em);
         }
 
-        60% {
+        40% {
+            opacity: 0;
+            width: 0.165em;
+            height: 3.2em;
+            transform: translateY(-5em);
+        }
+
+        45% {
+            transform: translateY(0em);
+            opacity: 0;
+        }
+        55% {
             height: 0.165em;
             width: 3.2em;
+            opacity: 0;
         }
-
+        60% {
+            transform: translateX(-5em);
+            opacity: 0.5;
+        }
         100% {
             height: 0.165em;
             width: 3.2em;
+            opacity: 1;
+            transform: translateX(0em);
         }
     }
 
     @keyframes reverseLineThree {
-        40% {
+        0% {
             width: 0.16em;
             height: 2em;
         }
-
+        40% {
+            transform: translateY(3em);
+            opacity: 0;
+            width: 0.16em;
+            height: 2em;
+        }
+        45% {
+            transform: translateY(0em);
+        }
         60% {
             height: 0.16em;
             width: 2em;
+            opacity: 0;
+        }
+        65% {
+            transform: translateX(3em);
+            opacity: 0.5;
         }
         100% {
             height: 0.16em;
             width: 2em;
+            opacity: 1;
+            transform: translateX(0em);
         }
     }
 
     @keyframes reverseLineOne {
-        40% {
+        0% {
             width: 0.16em;
             height: 2.45em;
+        }
+        40% {
+            transform: translateY(3em);
+            opacity: 0;
+            width: 0.16em;
+            height: 2.45em;
+        }
+        45% {
+            transform: translateY(0em);
         }
         60% {
             height: 0.16em;
             width: 2.45em;
+            opacity: 0;
+        }
+        65% {
+            transform: translateX(5em);
+            opacity: 0.5;
         }
         100% {
             height: 0.16em;
             width: 2.45em;
+            opacity: 1;
+            transform: translateX(0em);
         }
     }
     h3 {

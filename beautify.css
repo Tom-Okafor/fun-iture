@@ -168,17 +168,17 @@ header li {
 }
 
 .menu-holderToo {
-    animation: animateMenu 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: animateMenu 2.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 .lineTwoToo {
-    animation: animateLineTwo 2.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: animateLineTwo 2.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 .lineOneToo {
-    animation: animateLineOne 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: animateLineOne 2.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 .lineThreeToo {
-    animation: animateLineThree 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: animateLineThree 2.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes animateMenu {
@@ -278,7 +278,7 @@ header li {
 }
 
 .menu-holderReverse {
-    animation: reverseMenu 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseMenu 2.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseMenu {
@@ -311,7 +311,7 @@ header li {
 }
 
 .lineTwoReverse {
-    animation: reverseLineTwo 2.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseLineTwo 2.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseLineTwo {
@@ -351,7 +351,7 @@ header li {
 }
 
 .lineThreeReverse {
-    animation: reverseLineThree 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseLineThree 2.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseLineThree {
@@ -386,7 +386,7 @@ header li {
 }
 
 .lineOneReverse {
-    animation: reverseLineOne 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    animation: reverseLineOne 2.3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 @keyframes reverseLineOne {
@@ -975,7 +975,7 @@ a {
     backdrop-filter: blur(5px);
     transform: translateY(-200%);
     overflow: hidden;
-    outline: transparent;
+    outline: 0;
     border-radius: 5px;
 }
 
@@ -992,7 +992,7 @@ a {
 }
 
 .menu-remove {
-    animation: lift 0.8s ease-in-out forwards;
+    animation: lift 0.5s ease-in-out forwards;
     animation-delay: 0.6s;
 }
 
@@ -1050,7 +1050,7 @@ a {
     }
 }
 .menu-link-retract {
-    animation: slide-in 1s ease-in-out forwards;
+    animation: slide-in 0.2s linear forwards;
 }
 
 @keyframes slide-in {
@@ -1081,7 +1081,7 @@ a {
     animation-delay: 0.8s;
 }
 .menu-up1 {
-    animation: menu-up-first 0.8s ease-in forwards;
+    animation: menu-up-first 0.5s ease-in both;
     animation-delay: 0.8s;
 }
 
@@ -1096,6 +1096,7 @@ a {
 }
 
 @keyframes menu-up-first {
+    0%,
     20%,
     40%,
     60%,
@@ -1122,7 +1123,7 @@ a {
     animation-delay: 0.8s;
 }
 .menu-up2 {
-    animation: menu-up-second 0.8s ease-in forwards;
+    animation: menu-up-second 0.5s ease-in both;
     animation-delay: 0.8s;
 }
 
@@ -1139,6 +1140,7 @@ a {
 }
 
 @keyframes menu-up-second {
+    0%,
     20%,
     40%,
     60% {
@@ -1168,7 +1170,7 @@ a {
     animation-delay: 0.8s;
 }
 .menu-up3 {
-    animation: menu-up-third 0.8s ease-in forwards;
+    animation: menu-up-third 0.5s ease-in both;
     animation-delay: 0.8s;
 }
 
@@ -1187,6 +1189,7 @@ a {
 }
 
 @keyframes menu-up-third {
+    0%,
     20%,
     40% {
         transform: translateY(0px);
@@ -1217,7 +1220,7 @@ a {
     animation-delay: 0.8s;
 }
 .menu-up4 {
-    animation: menu-up-fourth 0.8s ease-in forwards;
+    animation: menu-up-fourth 0.5s ease-in both;
     animation-delay: 0.8s;
 }
 
@@ -1238,16 +1241,14 @@ a {
 }
 
 @keyframes menu-up-fourth {
+    0%,
     20% {
-        transform: translateY(-154.2px);
         transform: translateY(0px);
     }
     40% {
-        transform: translateY(-102.8px);
         transform: translateY(-51.4px);
     }
     60% {
-        transform: translateY(-51.4px);
         transform: translateY(-102.8px);
     }
     80% {
@@ -1275,7 +1276,7 @@ a {
     animation-delay: 0.8s;
 }
 .menu-up5 {
-    animation: menu-up-fifth 0.8s ease-in forwards;
+    animation: menu-up-fifth 0.5s ease-in both;
     animation-delay: 0.8s;
 }
 
@@ -1299,6 +1300,9 @@ a {
 }
 
 @keyframes menu-up-fifth {
+    0% {
+        transform: translateY(0px);
+    }
     20% {
         transform: translateY(-51.4px);
     }

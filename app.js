@@ -23,6 +23,8 @@
             MENU_BUTTON.addEventListener("click", event => {
                 if (!numberOfMenuButtonClicks) {
                     handleButtonAnimationForMenuOpen();
+                                handleAnimationsForDropDownMenuReveal();
+
                 } else {
                     handleButtonAnimationForMenuClose();
                 }
@@ -77,15 +79,28 @@
                         console.log(`menu-down${t + 1}`);
                     }
                 }
-                
-                //
+
+                // create a function that adds a class to the menu items' anchor elements to initiate their animation
                 function handleAnimationForMenuLinkReveal() {
-                  
+                    let linksAnimated = 0;
+                    setTimeout(() => {
+                        const LINK_ANIMATION_INTERVAL = setInterval(() => {
+                            assignClassName(
+                                MENU_ITEMS_LINKS[linksAnimated],
+                                "menu-link-reveal"
+                            );
+                            linksAnimated++;
+                            if (linksAnimated == MENU_ITEMS_LINKS.length) {
+                                clearInterval(LINK_ANIMATION_INTERVAL);
+                            }
+                        }, 300);
+                    }, 900);
                 }
                 handleAnimationForMenuDropDown();
                 handleAnimationForMenuItemReveal();
+
+                handleAnimationForMenuLinkReveal();
             }
-            handleAnimationsForDropDownMenuReveal();
         }
 
         // create a function that asigns a new classname to an element by taking existing classname and modifying it.

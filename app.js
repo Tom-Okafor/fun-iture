@@ -14,8 +14,6 @@
 
         const MENU_ITEMS_LINKS = document.querySelectorAll(".menu-item > a");
 
-        console.log(MENU_ITEMS_LINKS);
-
         let numberOfMenuButtonClicks = 0;
 
         //create function that aids in the animation of the menu button and lines
@@ -45,7 +43,6 @@
                     "animationend",
                     () => {
                         removeNewClassName(MENU_BUTTON, 0);
-                        console.log(MENU_BUTTON.classList);
                     },
                     { once: true }
                 );
@@ -99,54 +96,31 @@
                     200,
                     "menu-link-retract"
                 );
-                for (let eachMenuItemLink of MENU_ITEMS_LINKS) {
-                  eachMenuItemLink.addEventListener(
-                        "animationend",
-                        () => {
-                            removeNewClassName(eachMenuItemLink, 0);
-                        },
-                        {
-                            once: true
-                        }
-                    );
-                }
+                setTimeout(() => {
+                    for (let eachMenuItemLink of MENU_ITEMS_LINKS) {
+                        eachMenuItemLink.className = "";
+                    }
+                }, 1500);
             }
 
             function handleAnimationForMenuItemRetract() {
                 setTimeout(() => {
                     handleMenuItemsAnimations("menu-up");
-                }, 800);
-                for (let eachMenuItem of MENU_ITEMS) {
-                    eachMenuItem.addEventListener(
-                        "animationend",
-                        () => {
+                    setTimeout(() => {
+                        for (let eachMenuItem of MENU_ITEMS) {
                             removeNewClassName(eachMenuItem, 0);
-                        },
-                        {
-                            once: true
                         }
-                    );
-                }
+                    }, 1500);
+                }, 800);
             }
 
             function handleAnimationForMenuRetract() {
-                setTimeout(
-                    () => {
-                        assignClassName(MENU, "menu-remove");
-                    },
-                    2500,
-                    () => {
-                        MENU.addEventListener(
-                            "animationend",
-                            () => {
-                                removeNewClassName(MENU, 0);
-                            },
-                            {
-                                once: true
-                            }
-                        );
-                    }
-                );
+                setTimeout(() => {
+                    assignClassName(MENU, "menu-remove");
+                    setTimeout(() => {
+                        removeNewClassName(MENU, 0);
+                    }, 550);
+                }, 2500);
             }
             handleAnimationForMenuLinkRetract();
             handleAnimationForMenuItemRetract();
@@ -180,7 +154,6 @@
             let linksAnimated;
             if (!numberOfMenuButtonClicks) {
                 linksAnimated = 0;
-                console.log(numberOfMenuButtonClicks);
             } else {
                 linksAnimated = target.length - 1;
             }
@@ -207,7 +180,6 @@
         function handleMenuItemsAnimations(clsName) {
             for (let t = 0; t < MENU_ITEMS.length; t++) {
                 assignClassName(MENU_ITEMS[t], `${clsName + (t + 1)}`);
-                console.log(`${clsName + (t + 1)}`);
             }
         }
 

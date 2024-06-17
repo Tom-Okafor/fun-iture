@@ -11,10 +11,15 @@
         const MENU = document.querySelector(".menu");
 
         const MENU_ITEMS = document.querySelectorAll(".menu-item");
+
+        const MENU_ITEMS_LINKS = document.querySelectorAll(".menu-item > a");
+
+        console.log(MENU_ITEMS_LINKS);
+
         let numberOfMenuButtonClicks = 0;
 
         //create function that aids in the animation of the menu button and lines
-        function handleButtonAnimationForClickEvents() {
+        function handleMenuAnimationsForClickEvents() {
             MENU_BUTTON.addEventListener("click", event => {
                 if (!numberOfMenuButtonClicks) {
                     handleButtonAnimationForMenuOpen();
@@ -34,14 +39,15 @@
             }
 
             function handleButtonAnimationForMenuClose() {
-                console.log(numberOfMenuButtonClicks);
-
-                console.log(MENU_BUTTON.classList);
                 assignNewClassName(MENU_BUTTON, "Reverse", 0);
-                MENU_BUTTON.addEventListener("animationend", () => {
-                    removeNewClassName(MENU_BUTTON, 0);
-                    console.log(MENU_BUTTON.classList);
-                }, {once: true});
+                MENU_BUTTON.addEventListener(
+                    "animationend",
+                    () => {
+                        removeNewClassName(MENU_BUTTON, 0);
+                        console.log(MENU_BUTTON.classList);
+                    },
+                    { once: true }
+                );
 
                 for (let eachMenuButtonLine of MENU_BUTTON_LINES) {
                     assignNewClassName(eachMenuButtonLine, "Reverse", 0);
@@ -55,12 +61,42 @@
                 }
                 numberOfMenuButtonClicks = 0;
             }
+
+            function handleAnimationsForDropDownMenuReveal() {
+                // create a function that assigns a className to the Menu block in order to activate the drop down animation
+                function handleAnimationForMenuDropDown() {
+                    assignClassName(MENU, "menu-grid");
+                    assignClassName(MENU, "menu-reveal");
+                }
+
+                //create function that assigns distinct classes to the menu items to enable their respective dropdown movements
+
+                function handleAnimationForMenuItemReveal() {
+                    for (let t = 0; t < MENU_ITEMS.length; t++) {
+                        assignClassName(MENU_ITEMS[t], `menu-down${t + 1}`);
+                        console.log(`menu-down${t + 1}`);
+                    }
+                }
+                
+                //
+                function handleAnimationForMenuLinkReveal() {
+                  
+                }
+                handleAnimationForMenuDropDown();
+                handleAnimationForMenuItemReveal();
+            }
+            handleAnimationsForDropDownMenuReveal();
         }
 
-        // create a function that asigns a new classname to an element
+        // create a function that asigns a new classname to an element by taking existing classname and modifying it.
         function assignNewClassName(target, strng, index) {
             const ITEM_CLASSNAME = target.classList[index];
             target.classList.add(`${ITEM_CLASSNAME}${strng}`);
+        }
+
+        // create a function that assigns a className to an element without using existing class
+        function assignClassName(target, clsName) {
+            target.classList.add(clsName);
         }
 
         // create a function that removes the newly assigned classname
@@ -69,7 +105,7 @@
             target.className = NEW_CLASSNAME;
         }
 
-        handleButtonAnimationForClickEvents();
+        handleMenuAnimationsForClickEvents();
     }
     /* window.addEventListener("scroll", () => {
         console.log(pageYOffset);

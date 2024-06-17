@@ -979,6 +979,12 @@ a {
     border-radius: 5px;
 }
 
+.menu:hover .menu-item {
+    filter: blur(2px);
+}
+.menu:hover .menu-item:is(.menu-item:hover) {
+    filter: none;
+}
 .menu-grid {
     display: grid;
 }
@@ -1006,7 +1012,7 @@ a {
     width: 100%;
     box-shadow: 1px 3px 5px #555;
     overflow: hidden;
-    transition: all 1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .menu-item:nth-child(odd) {
     border-radius: 10px 5px;

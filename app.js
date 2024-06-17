@@ -23,10 +23,10 @@
             MENU_BUTTON.addEventListener("click", event => {
                 if (!numberOfMenuButtonClicks) {
                     handleButtonAnimationForMenuOpen();
-                                handleAnimationsForDropDownMenuReveal();
-
+                    handleAnimationsForDropDownMenuReveal();
                 } else {
                     handleButtonAnimationForMenuClose();
+                    handleAnimationsForDropDownMenuRetract();
                 }
             });
 
@@ -37,7 +37,6 @@
                 for (let eachMenuButtonLine of MENU_BUTTON_LINES) {
                     assignNewClassName(eachMenuButtonLine, "Too", 0);
                 }
-                numberOfMenuButtonClicks++;
             }
 
             function handleButtonAnimationForMenuClose() {
@@ -61,7 +60,6 @@
                         { once: true }
                     );
                 }
-                numberOfMenuButtonClicks = 0;
             }
 
             function handleAnimationsForDropDownMenuReveal() {
@@ -82,25 +80,30 @@
 
                 // create a function that adds a class to the menu items' anchor elements to initiate their animation
                 function handleAnimationForMenuLinkReveal() {
-                    let linksAnimated = 0;
-                    setTimeout(() => {
-                        const LINK_ANIMATION_INTERVAL = setInterval(() => {
-                            assignClassName(
-                                MENU_ITEMS_LINKS[linksAnimated],
-                                "menu-link-reveal"
-                            );
-                            linksAnimated++;
-                            if (linksAnimated == MENU_ITEMS_LINKS.length) {
-                                clearInterval(LINK_ANIMATION_INTERVAL);
-                            }
-                        }, 300);
-                    }, 900);
+                    handleMenuLinkAnimations(
+                        MENU_ITEMS_LINKS,
+                        900,
+                        200,
+                        "menu-link-reveal"
+                    );
                 }
                 handleAnimationForMenuDropDown();
                 handleAnimationForMenuItemReveal();
 
                 handleAnimationForMenuLinkReveal();
             }
+        }
+
+        function handleAnimationsForDropDownMenuRetract() {
+            function handleAnimationForMenuLinkRetract() {
+                handleMenuLinkAnimations(
+                    MENU_ITEMS_LINKS,
+                    0,
+                    200,
+                    "menu-link-retract"
+                );
+            }
+            handleAnimationForMenuLinkRetract();
         }
 
         // create a function that asigns a new classname to an element by taking existing classname and modifying it.
@@ -118,6 +121,39 @@
         function removeNewClassName(target, position) {
             const NEW_CLASSNAME = target.classList[position];
             target.className = NEW_CLASSNAME;
+        }
+
+        function handleMenuLinkAnimations(
+            target,
+            interval1,
+            interval2,
+            clsName
+        ) {
+            let linksAnimated;
+            if (!numberOfMenuButtonClicks) {
+                linksAnimated = 0;
+                console.log(numberOfMenuButtonClicks);
+            } else {
+                linksAnimated = target.length - 1;
+            }
+            setTimeout(() => {
+                const LINK_ANIMATION_INTERVAL = setInterval(() => {
+                    assignClassName(target[linksAnimated], clsName);
+                    if (!numberOfMenuButtonClicks) {
+                        linksAnimated++;
+                        if (linksAnimated == target.length) {
+                            clearInterval(LINK_ANIMATION_INTERVAL);
+                            numberOfMenuButtonClicks++;
+                        }
+                    } else {
+                        linksAnimated--;
+                        if (linksAnimated < 0) {
+                            clearInterval(LINK_ANIMATION_INTERVAL);
+                            numberOfMenuButtonClicks = 0;
+                        }
+                    }
+                }, interval2);
+            }, interval1);
         }
 
         handleMenuAnimationsForClickEvents();

@@ -72,10 +72,7 @@
                 //create function that assigns distinct classes to the menu items to enable their respective dropdown movements
 
                 function handleAnimationForMenuItemReveal() {
-                    for (let t = 0; t < MENU_ITEMS.length; t++) {
-                        assignClassName(MENU_ITEMS[t], `menu-down${t + 1}`);
-                        console.log(`menu-down${t + 1}`);
-                    }
+                    handleMenuItemsAnimations("menu-down");
                 }
 
                 // create a function that adds a class to the menu items' anchor elements to initiate their animation
@@ -102,8 +99,59 @@
                     200,
                     "menu-link-retract"
                 );
+                for (let eachMenuItemLink of MENU_ITEMS_LINKS) {
+                  eachMenuItemLink.addEventListener(
+                        "animationend",
+                        () => {
+                            removeNewClassName(eachMenuItemLink, 0);
+                        },
+                        {
+                            once: true
+                        }
+                    );
+                }
+            }
+
+            function handleAnimationForMenuItemRetract() {
+                setTimeout(() => {
+                    handleMenuItemsAnimations("menu-up");
+                }, 800);
+                for (let eachMenuItem of MENU_ITEMS) {
+                    eachMenuItem.addEventListener(
+                        "animationend",
+                        () => {
+                            removeNewClassName(eachMenuItem, 0);
+                        },
+                        {
+                            once: true
+                        }
+                    );
+                }
+            }
+
+            function handleAnimationForMenuRetract() {
+                setTimeout(
+                    () => {
+                        assignClassName(MENU, "menu-remove");
+                    },
+                    2500,
+                    () => {
+                        MENU.addEventListener(
+                            "animationend",
+                            () => {
+                                removeNewClassName(MENU, 0);
+                            },
+                            {
+                                once: true
+                            }
+                        );
+                    }
+                );
             }
             handleAnimationForMenuLinkRetract();
+            handleAnimationForMenuItemRetract();
+
+            handleAnimationForMenuRetract();
         }
 
         // create a function that asigns a new classname to an element by taking existing classname and modifying it.
@@ -154,6 +202,13 @@
                     }
                 }, interval2);
             }, interval1);
+        }
+
+        function handleMenuItemsAnimations(clsName) {
+            for (let t = 0; t < MENU_ITEMS.length; t++) {
+                assignClassName(MENU_ITEMS[t], `${clsName + (t + 1)}`);
+                console.log(`${clsName + (t + 1)}`);
+            }
         }
 
         handleMenuAnimationsForClickEvents();

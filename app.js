@@ -219,5 +219,15 @@
         "background-shift-too",
         "background-unshift-too"
     );
+    animateElementsOnScroll(
+        ".about h3",
+        "background-shift-too",
+        "background-unshift-too"
+    );
+    animateElementsOnScroll(
+        ".features h3",
+        "background-shift-too",
+        "background-unshift-too"
+    );
     handleMenuToggleClickEvent();
 })();

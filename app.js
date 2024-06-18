@@ -135,15 +135,10 @@
         }
 
         // create a function that assigns a className to an element without using existing class
-        function assignClassName(target, clsName) {
-            target.classList.add(clsName);
-        }
 
         // create a function that removes the newly assigned classname
-        function removeNewClassName(target, position) {
-            const NEW_CLASSNAME = target.classList[position];
-            target.className = NEW_CLASSNAME;
-        }
+
+        // create a function that assigns the necessary class required for the menu link text reveal
 
         function handleMenuLinkAnimations(
             target,
@@ -177,6 +172,7 @@
             }, interval1);
         }
 
+        // create function that runs the Menu Item animation
         function handleMenuItemsAnimations(clsName) {
             for (let t = 0; t < MENU_ITEMS.length; t++) {
                 assignClassName(MENU_ITEMS[t], `${clsName + (t + 1)}`);
@@ -185,8 +181,43 @@
 
         handleMenuAnimationsForClickEvents();
     }
-    /* window.addEventListener("scroll", () => {
-        console.log(pageYOffset);
-    });*/
+    function animateElementsOnScroll(elem, class1, class2) {
+        let hasAnimationRan = false;
+        const GET_ELEM = document.querySelector(elem);
+        const ELEM_ORIGINAL_CLSNAME = GET_ELEM.className;
+
+        const ELEM_POSITION =
+            GET_ELEM.getBoundingClientRect().top + window.scrollY;
+        let heightScrolled;
+        window.addEventListener("scroll", () => {
+            heightScrolled = window.scrollY + 250;
+
+            if (heightScrolled >= ELEM_POSITION && !hasAnimationRan) {
+                assignClassName(GET_ELEM, class1);
+                hasAnimationRan = true;
+            } else if (heightScrolled < ELEM_POSITION && hasAnimationRan) {
+                assignClassName(GET_ELEM, class2);
+
+                hasAnimationRan = false;
+                setTimeout(() => {
+                    GET_ELEM.className = ELEM_ORIGINAL_CLSNAME;
+                }, 1020);
+            }
+        });
+    }
+
+    function assignClassName(target, clsName) {
+        target.classList.add(clsName);
+    }
+    function removeNewClassName(target, position) {
+        const NEW_CLASSNAME = target.classList[position];
+        target.className = NEW_CLASSNAME;
+    }
+    animateElementsOnScroll("h1", "background-shift", "background-unshift");
+    animateElementsOnScroll(
+        ".specialH1",
+        "background-shift-too",
+        "background-unshift-too"
+    );
     handleMenuToggleClickEvent();
 })();

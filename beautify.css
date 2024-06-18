@@ -506,9 +506,8 @@ article p {
 }
 .pHide {
     opacity: 0;
-    line-height: 5em;
+    line-height: 3em;
     transition: all 1s ease-in-out;
-    
 }
 .pUnhide {
     opacity: 1;
@@ -522,7 +521,7 @@ article p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 8em;
+    margin-top: 5em;
 }
 .afterFeatures {
     margin-top: 0em;
@@ -629,7 +628,7 @@ article p {
     }
 }
 
-.article-div::before {
+/* .article-div::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -654,7 +653,7 @@ article p {
     background-repeat: repeat;
     box-shadow: 2px 2.5px 15px #777;
 }
-
+ */
 article:nth-of-type(2) > div::before {
     background-size: 700%;
     background-position: 3em -6.9em;
@@ -1037,7 +1036,6 @@ a {
 
 .menu-remove {
     animation: lift 0.5s ease-in-out forwards;
-    animation-delay: 0.6s;
 }
 
 @keyframes lift {
@@ -1048,7 +1046,7 @@ a {
 
 .menu-item {
     width: 100%;
-    box-shadow: 1px 3px 5px #555;
+    box-shadow: 0.5px 3px 2px #555;
     overflow: hidden;
     transition: all 0.2s ease-in-out;
 }
@@ -1070,7 +1068,6 @@ a {
     letter-spacing: 1.5px;
     background: #00000035;
     border-radius: 5px;
-    transform: translateY(4em);
     display: flex;
     align-items: center;
     transition: all 0.5s ease-in-out;
@@ -1126,7 +1123,6 @@ a {
 }
 .menu-up1 {
     animation: menu-up-first 0.5s ease-in both;
-    animation-delay: 0.8s;
 }
 
 @keyframes menu-down-first {
@@ -1168,7 +1164,6 @@ a {
 }
 .menu-up2 {
     animation: menu-up-second 0.5s ease-in both;
-    animation-delay: 0.8s;
 }
 
 @keyframes menu-down-second {
@@ -1215,7 +1210,6 @@ a {
 }
 .menu-up3 {
     animation: menu-up-third 0.5s ease-in both;
-    animation-delay: 0.8s;
 }
 
 @keyframes menu-down-third {
@@ -1265,7 +1259,6 @@ a {
 }
 .menu-up4 {
     animation: menu-up-fourth 0.5s ease-in both;
-    animation-delay: 0.8s;
 }
 
 @keyframes menu-down-fourth {
@@ -1321,7 +1314,6 @@ a {
 }
 .menu-up5 {
     animation: menu-up-fifth 0.5s ease-in both;
-    animation-delay: 0.8s;
 }
 
 @keyframes menu-down-fifth {
@@ -1394,7 +1386,9 @@ footer {
     body {
         padding: 3em;
     }
-
+    .article-holder {
+        margin-right: auto;
+    }
     header {
         height: 85px;
     }

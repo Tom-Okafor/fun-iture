@@ -47,8 +47,14 @@ h1 {
     background-repeat: repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: revealBackground 1s ease-out forwards;
-    animation-delay: 0.8s;
+}
+
+.background-shift {
+    animation: revealBackground 1s ease-out both;
+}
+
+.background-unshift {
+    animation: retractBackground 1s ease-out both;
 }
 
 @keyframes revealBackground {
@@ -60,6 +66,18 @@ h1 {
     100% {
         background-size: 29%;
         background-position: 0;
+    }
+}
+
+@keyframes retractBackground {
+    50% {
+        background-size: 800%;
+        background-position: 7em -9em;
+    }
+
+    100% {
+        background-size: 600%;
+        background-position: left;
     }
 }
 
@@ -82,8 +100,10 @@ h1 {
     background-repeat: repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: revealBackgroundToo 2s ease-out forwards;
-    animation-delay: 0.5s;
+}
+
+.background-shift-too {
+    animation: revealBackgroundToo 1.5s ease-out forwards;
 }
 
 @keyframes revealBackgroundToo {
@@ -95,6 +115,22 @@ h1 {
     100% {
         background-size: 10%;
         background-position: 0;
+    }
+}
+
+.background-unshift-too {
+    animation: retractBackgroundToo 2s ease-out forwards;
+}
+
+@keyframes retractBackgroundToo {
+    60% {
+        background-size: 190%;
+        background-position: 7em -9em;
+    }
+
+    100% {
+        background-size: 190%;
+        background-position: left;
     }
 }
 
@@ -461,6 +497,10 @@ h3 {
         background-size: 20%;
         background-position: 0;
     }
+}
+h3:nth-of-type(1) {
+    font-size: 50em;
+    font-size: 50em;
 }
 
 section p {

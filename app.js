@@ -186,7 +186,7 @@
         const GET_ELEM = document.querySelector(elem);
         const ELEM_ORIGINAL_CLSNAME = GET_ELEM.className;
 
-        const ELEM_POSITION =
+        let ELEM_POSITION =
             GET_ELEM.getBoundingClientRect().top + window.scrollY;
         let heightScrolled;
         window.addEventListener("scroll", () => {
@@ -204,6 +204,13 @@
                 }, 1020);
             }
         });
+
+        window.addEventListener("resize", resetPositions);
+        function resetPositions() {
+            ELEM_POSITION =
+                GET_ELEM.getBoundingClientRect().top + window.scrollY;
+            heightScrolled = window.scrollY + 250;
+        }
     }
 
     function assignClassName(target, clsName) {
@@ -229,5 +236,10 @@
         "background-shift-too",
         "background-unshift-too"
     );
+
+    animateElementsOnScroll(".pLine", "pLine-show", "pLine");
+
+    animateElementsOnScroll(".pHide1", "pUnhide", "pHide");
+
     handleMenuToggleClickEvent();
 })();

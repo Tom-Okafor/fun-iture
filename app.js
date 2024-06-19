@@ -532,5 +532,10 @@
 
     animateElementsOnScroll(".pHide7", "pUnhide", "pHide");
 
+    animateElementsOnScroll("article:first-of-type .hide", "appear", "hide");
+    animateElementsOnScroll("article:nth-of-type(2) .hide", "appear", "hide");
+    animateElementsOnScroll("article:nth-of-type(3) .hide", "appear", "hide");
+    animateElementsOnScroll("article:nth-of-type(4) .hide", "appear", "hide");
+
     handleMenuToggleClickEvent();
 })();

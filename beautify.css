@@ -20,6 +20,7 @@ body {
     background: linear-gradient(-209deg, var(--color3), var(--color5) 40%);
     padding: 1em;
     position: relative;
+    color: #555555e9;
 }
 h1 {
     text-transform: uppercase;
@@ -527,7 +528,7 @@ article p {
     margin-top: 0em;
 }
 .box img {
-    width: 86vw;
+    width: 95.5556%;
     height: 95%;
     z-index: 1;
     position: absolute;
@@ -543,8 +544,8 @@ article p {
 }
 
 .box {
-    width: 90vw;
-    height: 90vw;
+    width: 50vw;
+    height: 50vw;
     background-color: var(--color4);
     position: relative;
     overflow: hidden;
@@ -555,8 +556,17 @@ article p {
     transition-property: filter, opacity;
     transition-duration: 1s;
     transition-timing-function: linear;
+    animation: expandBox 1s ease-in-out both;
+    animation-timeline: scroll();
+    animation-range-start: 0px;
+    animation-range-end: 100px;
 }
-
+@keyframes expandBox {
+    to {
+        width: 90vw;
+        height: 90vw;
+    }
+}
 @starting-style {
     .box {
         opacity: 0.3;
@@ -603,9 +613,9 @@ article p {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
     position: relative;
-    left: 2vw;
+    left: 3vw;
 }
 .article-div > img {
     position: absolute;
@@ -628,7 +638,7 @@ article p {
     }
 }
 
-/* .article-div::before {
+.article-div::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -648,23 +658,24 @@ article p {
         var(--color6) 318deg,
         var(--color7) 318deg
     );
-    background-size: 700%;
-    background-position: 13em;
+
+    background-size: 1240%;
+    background-position: center bottom;
     background-repeat: repeat;
     box-shadow: 2px 2.5px 15px #777;
 }
- */
+
 article:nth-of-type(2) > div::before {
-    background-size: 700%;
-    background-position: 3em -6.9em;
+    background-size: 140%;
+    background-position: left;
 }
 article:nth-of-type(3) > div::before {
-    background-size: 2000%;
-    background-position: 43em;
+    background-size: 180%;
+    background-position: right center;
 }
 article:nth-of-type(4) > div::before {
-    background-size: 900%;
-    background-position: 201em -186px;
+    background-size: 200%;
+    background-position: left bottom;
 }
 article p {
     max-width: 35ch;
@@ -1398,9 +1409,21 @@ footer {
         height: 95%;
     }
     .box {
-        width: 85vw;
-        height: 85vw;
+        width: 50vw;
+        height: 50vw;
+        animation: expandBox 1s ease-in-out both;
+        animation-timeline: scroll();
+        animation-range-start: 0px;
+        animation-range-end: 100px;
     }
+
+    @keyframes expandBox {
+        to {
+            width: 85vw;
+            height: 85vw;
+        }
+    }
+
     .box::before {
         width: 250px;
     }

@@ -51,37 +51,12 @@
                     handleMenuItemsAnimations("menu-down");
                 }
 
-                // create a function that adds a class to the menu items' anchor elements to initiate their animation
-                // function handleAnimationForMenuLinkReveal() {
-                //     handleMenuLinkAnimations(
-                //         MENU_ITEMS_LINKS,
-                //         900,
-                //         200,
-                //         "menu-link-reveal"
-                //     );
-                // }
                 handleAnimationForMenuDropDown();
                 handleAnimationForMenuItemReveal();
-
-                // handleAnimationForMenuLinkReveal();
             }
         }
 
         function handleAnimationsForDropDownMenuRetract() {
-            // function handleAnimationForMenuLinkRetract() {
-            //     handleMenuLinkAnimations(
-            //         MENU_ITEMS_LINKS,
-            //         0,
-            //         200,
-            //         "menu-link-retract"
-            //     );
-            //     setTimeout(() => {
-            //         for (let eachMenuItemLink of MENU_ITEMS_LINKS) {
-            //             eachMenuItemLink.className = "";
-            //         }
-            //     }, 1500);
-            // }
-
             function handleAnimationForMenuItemRetract() {
                 handleMenuItemsAnimations("menu-up");
                 setTimeout(() => {
@@ -99,7 +74,6 @@
                     }, 550);
                 }, 600);
             }
-            // handleAnimationForMenuLinkRetract();
             handleAnimationForMenuItemRetract();
 
             handleAnimationForMenuRetract();
@@ -117,38 +91,6 @@
 
         // create a function that assigns the necessary class required for the menu link text reveal
 
-        /*  function handleMenuLinkAnimations(
-            target,
-            interval1,
-            interval2,
-            clsName
-        ) {
-            let linksAnimated;
-            if (!numberOfMenuButtonClicks) {
-                linksAnimated = 0;
-            } else {
-                linksAnimated = target.length - 1;
-            }
-            setTimeout(() => {
-                const LINK_ANIMATION_INTERVAL = setInterval(() => {
-                    assignClassName(target[linksAnimated], clsName);
-                    if (!numberOfMenuButtonClicks) {
-                        linksAnimated++;
-                        if (linksAnimated == target.length) {
-                            clearInterval(LINK_ANIMATION_INTERVAL);
-                            numberOfMenuButtonClicks++;
-                        }
-                    } else {
-                        linksAnimated--;
-                        if (linksAnimated < 0) {
-                            clearInterval(LINK_ANIMATION_INTERVAL);
-                            numberOfMenuButtonClicks = 0;
-                        }
-                    }
-                }, interval2);
-            }, interval1);
-        }
-*/
         // create function that runs the Menu Item animation
         function handleMenuItemsAnimations(clsName) {
             for (let t = 0; t < MENU_ITEMS.length; t++) {
@@ -200,10 +142,6 @@
                     left: 0,
                     behavior: "smooth"
                 });
-                // setTimeout(() => {
-                //     handleButtonAnimationForMenuClose();
-                //     handleAnimationsForDropDownMenuRetract();
-                // }, 3500);
             }
         }
 
@@ -357,20 +295,6 @@
         }
 
         function handleAnimationsForDropDownMenuRetract() {
-            // function handleAnimationForMenuLinkRetract() {
-            //     handleMenuLinkAnimations(
-            //         MENU_ITEMS_LINKS,
-            //         0,
-            //         200,
-            //         "menu-link-retract"
-            //     );
-            //     setTimeout(() => {
-            //         for (let eachMenuItemLink of MENU_ITEMS_LINKS) {
-            //             eachMenuItemLink.className = "";
-            //         }
-            //     }, 1500);
-            // }
-
             function handleAnimationForMenuItemRetract() {
                 setTimeout(() => {
                     handleMenuItemsAnimations("menu-up");
@@ -390,7 +314,6 @@
                     }, 550);
                 }, 2500);
             }
-            // handleAnimationForMenuLinkRetract();
             handleAnimationForMenuItemRetract();
 
             handleAnimationForMenuRetract();
@@ -408,37 +331,6 @@
 
         // create a function that assigns the necessary class required for the menu link text reveal
 
-        /* function handleMenuLinkAnimations(
-            target,
-            interval1,
-            interval2,
-            clsName
-        ) {
-            let linkClick = numberOfMenuButtonClicks;
-            let linksAnimated;
-            if (!) {
-                linksAnimated = 0;
-            } else {
-                linksAnimated = target.length - 1;
-            }
-            setTimeout(() => {
-                const LINK_ANIMATION_INTERVAL = setInterval(() => {
-                    assignClassName(target[linksAnimated], clsName);
-                    if (!numberOfMenuButtonClicks) {
-                        linksAnimated++;
-                        if (linksAnimated == target.length) {
-                            clearInterval(LINK_ANIMATION_INTERVAL);
-                        }
-                    } else {
-                        linksAnimated--;
-                        if (linksAnimated < 0) {
-                            clearInterval(LINK_ANIMATION_INTERVAL);
-                        }
-                    }
-                }, interval2);
-            }, interval1);
-        }
-*/
         // create function that runs the Menu Item animation
         function handleMenuItemsAnimations(clsName) {
             for (let t = 0; t < MENU_ITEMS.length; t++) {
@@ -536,6 +428,77 @@
         const NEW_CLASSNAME = target.classList[position];
         target.className = NEW_CLASSNAME;
     }
+
+    // create a function that slides the icons on the icon display element
+
+    function slideIcons() {
+        function slideRightSideIcons() {
+            handleNormalSlide(
+                ".list-right-box > li",
+                ".list-right-box",
+                0,
+                1500
+            );
+        }
+        function slideLeftSideIcons() {
+            handleNormalSlide(".list-left", ".list-left-box", -100, 1400);
+        }
+
+        slideRightSideIcons();
+        slideLeftSideIcons();
+
+        function handleNormalSlide(selector1, selector2, right, newright) {
+            const BOX_LIST_ITEMS = document.querySelectorAll(selector1);
+            const BOX_LIST_ITEMS_PARENTS_NUMBER =
+                document.querySelectorAll(selector2).length;
+            const BOX_LIST_ITEMS_LENGTH = BOX_LIST_ITEMS.length;
+            const NUMBER_OF_REQUIRED_SLIDES =
+                BOX_LIST_ITEMS_LENGTH / BOX_LIST_ITEMS_PARENTS_NUMBER;
+            let slideCounter = 0;
+            let rightPosition = right;
+            let slideInterval = setInterval(() => {
+                console.log(slideCounter);
+                rightPosition += 100;
+                for (let boxListItem of BOX_LIST_ITEMS) {
+                    boxListItem.style.right = `${rightPosition}%`;
+                    console.log(`${rightPosition}%`);
+                }
+
+                slideCounter++;
+                if (slideCounter == NUMBER_OF_REQUIRED_SLIDES) {
+                    clearInterval(slideInterval);
+                    handleReverseSlide(selector1, selector2, right, newright);
+                }
+            }, 1500);
+        }
+
+        function handleReverseSlide(selector1, selector2, right, newright) {
+            const BOX_LIST_ITEMS = document.querySelectorAll(selector1);
+            const BOX_LIST_ITEMS_PARENTS_NUMBER =
+                document.querySelectorAll(selector2).length;
+            const BOX_LIST_ITEMS_LENGTH = BOX_LIST_ITEMS.length;
+            const NUMBER_OF_REQUIRED_SLIDES =
+                BOX_LIST_ITEMS_LENGTH / BOX_LIST_ITEMS_PARENTS_NUMBER;
+            let slideCounter = NUMBER_OF_REQUIRED_SLIDES;
+            let rightPosition = newright;
+            let slideInterval = setInterval(() => {
+                console.log(slideCounter);
+                rightPosition -= 100;
+                for (let boxListItem of BOX_LIST_ITEMS) {
+                    boxListItem.style.right = `${rightPosition}%`;
+                    console.log(`${rightPosition}%`);
+                }
+
+                slideCounter--;
+                if (slideCounter == 0) {
+                    clearInterval(slideInterval);
+                    handleNormalSlide(selector1, selector2, right, newright);
+                }
+            }, 1500);
+        }
+    }
+
+    slideIcons();
     animateElementsOnScroll("h1", "background-shift", "background-unshift");
     animateElementsOnScroll(
         ".specialH1",

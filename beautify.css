@@ -507,7 +507,7 @@ article p {
 }
 .pHide {
     opacity: 0;
-    line-height: 3em;
+    line-height: 4em;
     transition: all 1s ease-in-out;
 }
 .pUnhide {
@@ -613,7 +613,7 @@ article p {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     position: relative;
     left: 3vw;
 }
@@ -700,6 +700,51 @@ article:nth-of-type(4) p {
 }
 .carousel li {
     position: relative;
+    left: 0%;
+}
+
+.carousel > div {
+    position: relative;
+}
+
+.carousel button {
+    background: var(--color6);
+    outline: 1.5px solid var(--color4);
+    outline-offset: 2px;
+    border-radius: 50%;
+    border: 0;
+    backdrop-filter: blur(3px);
+    height: 35px;
+    width: 35px;
+    display: grid;
+    place-content: center;
+    transition: all 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.carousel button:hover {
+    background: var(--color4);
+    outline: 1.5px solid var(--color6);
+}
+.carousel button:hover .next,
+.carousel button:hover .previous {
+    fill: var(--color1);
+}
+.next-btn {
+    position: absolute;
+    right: 7%;
+    top: 40%;
+}
+
+.next,
+.previous {
+    fill: var(--color5);
+    transition: fill 1s ease-in-out;
+}
+
+.previous-btn {
+    position: absolute;
+    left: 7%;
+    top: 40%;
 }
 
 form {
@@ -1408,7 +1453,7 @@ footer {
     }
 
     .box img {
-        width: 81vw;
+        width: 95.5556%;
         height: 95%;
     }
     .box {
@@ -1916,8 +1961,20 @@ footer {
     }
 
     .icon-display {
-        height: 150px;
+        height: 200px;
         gap: 0.35em;
+    }
+
+    .display-logo img {
+        height: 3.5em;
+        width: 3.5em;
+        margin-left: 1em;
+    }
+
+    .display-icon-list img {
+        position: relative;
+        height: 6.5em;
+        width: 21.25vw;
     }
 
     .aboutImage {

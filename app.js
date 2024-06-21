@@ -161,12 +161,10 @@
         function handleSmoothscroll(evt) {
             evt.preventDefault();
             const DESTINATION_ID = evt.target.getAttribute("href");
-            console.log(DESTINATION_ID);
+
             const SCROLL_DESTINATION = document.querySelector(DESTINATION_ID);
-            console.log(SCROLL_DESTINATION);
             const DESTINATION_POSITION =
                 SCROLL_DESTINATION.getBoundingClientRect().top;
-            console.log(DESTINATION_POSITION);
             window.scrollBy({
                 top: DESTINATION_POSITION,
                 left: 0,
@@ -246,11 +244,9 @@
             let slideCounter = 0;
             let rightPosition = right;
             let slideInterval = setInterval(() => {
-                console.log(slideCounter);
                 rightPosition += 100;
                 for (let boxListItem of BOX_LIST_ITEMS) {
                     boxListItem.style.right = `${rightPosition}%`;
-                    console.log(`${rightPosition}%`);
                 }
 
                 slideCounter++;
@@ -271,11 +267,9 @@
             let slideCounter = NUMBER_OF_REQUIRED_SLIDES;
             let rightPosition = newright;
             let slideInterval = setInterval(() => {
-                console.log(slideCounter);
                 rightPosition -= 100;
                 for (let boxListItem of BOX_LIST_ITEMS) {
                     boxListItem.style.right = `${rightPosition}%`;
-                    console.log(`${rightPosition}%`);
                 }
 
                 slideCounter--;
@@ -291,7 +285,22 @@
         const CAROUSEL_SLIDES = document.querySelectorAll(
             ".carousel > div > ul > li"
         );
+        let leftPosition = 0;
+        let newLeft;
+        const NUMBER_OF_SLIDES = CAROUSEL_SLIDES.length;
+        console.log(NUMBER_OF_SLIDES);
+        let sliderInterval = setInterval(() => {
+            leftPosition++;
+            newLeft = leftPosition * 100;
+            for (let eachCarouselSlide of CAROUSEL_SLIDES) {
+                eachCarouselSlide.style.left = `-${newLeft}%`;
+            }
+            if (leftPosition == NUMBER_OF_SLIDES - 1) {
+                clearInterval(sliderInterval);
+            }
+        }, 2000);
     }
+    handleCarouselSlide();
 
     slideIcons();
     animateElementsOnScroll("h1", "background-shift", "background-unshift");

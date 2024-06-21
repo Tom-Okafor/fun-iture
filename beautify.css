@@ -691,16 +691,28 @@ article:nth-of-type(4) p {
     margin-bottom: 0;
 }
 .carousel img {
-    width: 90vw;
+    width: clamp(300px, 90vw, 1000px);
+    height: 100%;
+    border-radius: 30px;
+    object-fit: cover;
 }
 .carousel ul {
+    width: clamp(300px, 90vw, 1000px);
+
     display: flex;
-    width: 90vw;
+    height: 70vh;
     overflow: hidden;
+    align-items: center;
+    border-radius: 30px;
+    box-shadow: -3px 2px 5px #666;
 }
 .carousel li {
+    height: 100%;
     position: relative;
     left: 0%;
+    transition-property: left;
+    transition-duration: 600ms;
+    transition-timing-function: cubic-bezier(1, 0, 0.7, 1.2);
 }
 
 .carousel > div {
@@ -2035,10 +2047,6 @@ footer {
     article p {
         max-width: 45ch;
         font-size: 1.15em;
-    }
-
-    .carousel ul {
-        max-width: 1000px;
     }
 
     .testimonial {

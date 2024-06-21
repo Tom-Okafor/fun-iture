@@ -691,16 +691,28 @@ article:nth-of-type(4) p {
     margin-bottom: 0;
 }
 .carousel img {
-    width: clamp(300px, 90vw, 1000px);
+    width: clamp(300px, 90vw, 800px);
     height: 100%;
     border-radius: 30px;
     object-fit: cover;
+    object-position: center top;
 }
+
+.imageSlide {
+    animation: imageSlide 1s ease 2 alternate;
+}
+
+@keyframes imageSlide {
+    to {
+        object-position: center bottom;
+    }
+}
+
 .carousel ul {
-    width: clamp(300px, 90vw, 1000px);
+    width: clamp(300px, 90vw, 800px);
 
     display: flex;
-    height: 70vh;
+    height: clamp(500px, 90vh, 800px);
     overflow: hidden;
     align-items: center;
     border-radius: 30px;

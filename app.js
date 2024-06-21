@@ -287,6 +287,12 @@
         }
     }
 
+    function handleCarouselSlide() {
+        const CAROUSEL_SLIDES = document.querySelectorAll(
+            ".carousel > div > ul > li"
+        );
+    }
+
     slideIcons();
     animateElementsOnScroll("h1", "background-shift", "background-unshift");
     animateElementsOnScroll(

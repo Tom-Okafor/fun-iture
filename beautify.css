@@ -630,7 +630,6 @@ article p {
 .appear {
     opacity: 0;
     animation: appear 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-    transition: opacity 2s ease-in-out;
 }
 @keyframes appear {
     100% {
@@ -695,22 +694,22 @@ article:nth-of-type(4) p {
     height: 100%;
     border-radius: 30px;
     object-fit: cover;
-    object-position: center top;
+    object-position: left top;
 }
 
 .imageSlide {
     animation: imageSlide 1s ease 2 alternate;
+    animation-delay: 600ms;
 }
 
 @keyframes imageSlide {
     to {
-        object-position: center bottom;
+        object-position: right bottom;
     }
 }
 
 .carousel ul {
     width: clamp(300px, 90vw, 800px);
-
     display: flex;
     height: clamp(500px, 90vh, 800px);
     overflow: hidden;

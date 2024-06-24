@@ -287,53 +287,68 @@
         );
         let leftPosition = 0;
         let newLeft;
+        let slidesViewed = 1;
+        let sliderInterval;
         const NUMBER_OF_SLIDES = CAROUSEL_SLIDES.length;
         const SLIDE_IMAGES = document.querySelectorAll(
             ".carousel > div > ul > li > img"
         );
-        function handleForwardSlide() {
-                  let sliderInterval = setInterval(() => {
+        const PREVIOUS_BUTTON = document.querySelector(".previous-btn");
+        const NEXT_BUTTON = document.querySelector(".next-btn");
+        sliderInterval = setInterval(() => {
+            slidesViewed++;
+            if (slidesViewed <= NUMBER_OF_SLIDES) {
+                leftPosition++;
+                newLeft = leftPosition * 100;
+                for (let eachSlideImage of SLIDE_IMAGES) {
+                    eachSlideImage.className = "";
+                }
+                for (let eachCarouselSlide of CAROUSEL_SLIDES) {
+                    eachCarouselSlide.style.left = `-${newLeft}%`;
+                }
+
+                SLIDE_IMAGES[leftPosition].className = "imageSlide";
+
+                if (leftPosition == NUMBER_OF_SLIDES - 1) {
+                    NEXT_BUTTON.style.display = "none";
+                }
+            } else {
+                NEXT_BUTTON.style.display = "block";
+                leftPosition--;
+                newLeft = leftPosition * 100;
+                for (let eachSlideImage of SLIDE_IMAGES) {
+                    eachSlideImage.className = "";
+                }
+                for (let eachCarouselSlide of CAROUSEL_SLIDES) {
+                    eachCarouselSlide.style.left = `-${newLeft}%`;
+                }
+
+                SLIDE_IMAGES[leftPosition].className = "imageSlide";
+
+                if (leftPosition == 0) {
+                    slidesViewed = 1;
+                }
+            }
+        }, 3600);
+
+        NEXT_BUTTON.addEventListener("click", () => {
+            clearInterval(interval);
             leftPosition++;
             newLeft = leftPosition * 100;
-            for (let eachSlideImage of SLIDE_IMAGES) {
-                eachSlideImage.className = "";
-            }
+
             for (let eachCarouselSlide of CAROUSEL_SLIDES) {
                 eachCarouselSlide.style.left = `-${newLeft}%`;
             }
 
+            // for (let eachSlideImage of SLIDE_IMAGES) {
+            //     eachSlideImage.className = "";
+            // }
             SLIDE_IMAGES[leftPosition].className = "imageSlide";
 
             if (leftPosition == NUMBER_OF_SLIDES - 1) {
-                clearInterval(sliderInterval);
-                handleReverseSlide();
+                NEXT_BUTTON.style.display = "none";
             }
-        }, 3600);
-
-        }
-        
-        function handleReverseSlide() {
-                            let sliderInterval = setInterval(() => {
-            leftPosition--;
-            newLeft = leftPosition * 100;
-            for (let eachSlideImage of SLIDE_IMAGES) {
-                eachSlideImage.className = "";
-            }
-            for (let eachCarouselSlide of CAROUSEL_SLIDES) {
-                eachCarouselSlide.style.left = `-${newLeft}%`;
-            }
-
-            SLIDE_IMAGES[leftPosition].className = "imageSlide";
-
-            if (leftPosition == 0) {
-                clearInterval(sliderInterval);
-                handleForwardSlide()
-            }
-        }, 3600);
-
-        }
-        
-        handleForwardSlide();
+        });
     }
     handleCarouselSlide();
 

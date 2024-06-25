@@ -390,6 +390,27 @@
     }
     handleCarouselSlide();
 
+    function handleTestimonialsFadeIn() {
+        const TESTIMONIAL_BLOCK =
+            document.querySelectorAll(".testimonial-block");
+        const NUMBER_OF_BLOCKS = TESTIMONIAL_BLOCK.length;
+        let currentlyVisibleBlock;
+        let index = 1;
+        setInterval(() => {
+            currentlyVisibleBlock = document.querySelector(".visible-block");
+            currentlyVisibleBlock.classList.add("fadeOut");
+
+            setTimeout(() => {
+                currentlyVisibleBlock.className = "testimonial-block";
+                TESTIMONIAL_BLOCK[index].classList.add("visible-block");
+                index++;
+                if (index == NUMBER_OF_BLOCKS) {
+                    index = 0;
+                }
+            }, 1000);
+        }, 5000);
+    }
+    handleTestimonialsFadeIn();
     slideIcons();
     animateElementsOnScroll("h1", "background-shift", "background-unshift");
     animateElementsOnScroll(

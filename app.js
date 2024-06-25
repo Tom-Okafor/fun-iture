@@ -295,60 +295,66 @@
         );
         const PREVIOUS_BUTTON = document.querySelector(".previous-btn");
         const NEXT_BUTTON = document.querySelector(".next-btn");
-        sliderInterval = setInterval(() => {
-            slidesViewed++;
-            if (slidesViewed <= NUMBER_OF_SLIDES) {
-                leftPosition++;
-                newLeft = leftPosition * 100;
-                for (let eachSlideImage of SLIDE_IMAGES) {
-                    eachSlideImage.className = "";
-                }
-                for (let eachCarouselSlide of CAROUSEL_SLIDES) {
-                    eachCarouselSlide.style.left = `-${newLeft}%`;
-                }
+        function handleCarouselInterval() {
+            sliderInterval = setInterval(() => {
+                if (slidesViewed < NUMBER_OF_SLIDES) {
+                    leftPosition++;
+                    slidesViewed++;
+                    console.log(slidesViewed);
+                    newLeft = leftPosition * 100;
+                    for (let eachSlideImage of SLIDE_IMAGES) {
+                        eachSlideImage.className = "";
+                    }
+                    for (let eachCarouselSlide of CAROUSEL_SLIDES) {
+                        eachCarouselSlide.style.left = `-${newLeft}%`;
+                    }
 
-                SLIDE_IMAGES[leftPosition].className = "imageSlide";
+                    SLIDE_IMAGES[leftPosition].className = "imageSlide";
 
-                if (leftPosition == NUMBER_OF_SLIDES - 1) {
-                    NEXT_BUTTON.style.display = "none";
-                }
-            } else {
-                NEXT_BUTTON.style.display = "block";
-                leftPosition--;
-                newLeft = leftPosition * 100;
-                for (let eachSlideImage of SLIDE_IMAGES) {
-                    eachSlideImage.className = "";
-                }
-                for (let eachCarouselSlide of CAROUSEL_SLIDES) {
-                    eachCarouselSlide.style.left = `-${newLeft}%`;
-                }
+                    if (leftPosition == NUMBER_OF_SLIDES - 1) {
+                        NEXT_BUTTON.style.display = "none";
+                    }
+                } else {
+                    slidesViewed++;
+                    NEXT_BUTTON.style.display = "block";
+                    leftPosition--;
+                    newLeft = leftPosition * 100;
+                    for (let eachSlideImage of SLIDE_IMAGES) {
+                        eachSlideImage.className = "";
+                    }
+                    for (let eachCarouselSlide of CAROUSEL_SLIDES) {
+                        eachCarouselSlide.style.left = `-${newLeft}%`;
+                    }
 
-                SLIDE_IMAGES[leftPosition].className = "imageSlide";
+                    SLIDE_IMAGES[leftPosition].className = "imageSlide";
 
-                if (leftPosition == 0) {
-                    slidesViewed = 1;
+                    if (leftPosition == 0) {
+                        slidesViewed = 1;
+                    }
                 }
-            }
-        }, 3600);
-
+            }, 3600);
+        }
         NEXT_BUTTON.addEventListener("click", () => {
-            clearInterval(interval);
+            clearInterval(sliderInterval);
             leftPosition++;
+            slidesViewed++;
             newLeft = leftPosition * 100;
 
             for (let eachCarouselSlide of CAROUSEL_SLIDES) {
                 eachCarouselSlide.style.left = `-${newLeft}%`;
             }
 
-            // for (let eachSlideImage of SLIDE_IMAGES) {
-            //     eachSlideImage.className = "";
-            // }
+            setTimeout(() => {
+                SLIDE_IMAGES[leftPosition - 1].className = "";
+            }, 500);
             SLIDE_IMAGES[leftPosition].className = "imageSlide";
 
             if (leftPosition == NUMBER_OF_SLIDES - 1) {
                 NEXT_BUTTON.style.display = "none";
+                handleCarouselInterval();
             }
         });
+        handleCarouselInterval()
     }
     handleCarouselSlide();
 

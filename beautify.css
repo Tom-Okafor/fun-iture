@@ -1526,8 +1526,8 @@ footer {
   font-weight: bold;
   box-shadow: 0px 0px 5px 2px #777;
       animation: shake 0.2s;
-
 }
+
 
 
 @media screen and (min-width: 600px) {
@@ -1882,7 +1882,9 @@ footer {
     }
     .testimonial-block h4 {
         font-size: 1.45em;
+       
     }
+   
     form {
         max-width: 400px;
         height: 95%;

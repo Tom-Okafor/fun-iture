@@ -628,6 +628,16 @@ article p {
     }
 }
 
+.hideToo{
+    opacity: 1;
+    animation: disappear 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes disappear {
+    100% {
+        opacity: 0;
+    }
+}
+
 .article-div::before {
     content: "";
     position: absolute;
@@ -1503,10 +1513,10 @@ footer {
 .alertBox{
   width: 85%;
   position: absolute;
-  padding: 1rem 0;
+  padding: 1rem;
   backdrop-filter: blur(3px);
-  border: 2px solid var(--color7);
-  border-radius: 5px;
+  border: 1.5px solid var(--color7);
+  border-radius: 7px;
   color: #777;
   right: 7.5%;
   bottom: 45%;
@@ -1924,6 +1934,12 @@ footer {
         margin-top: 15px;
         gap: 15px;
     }
+    
+    .alertBox {
+      font-size: 1.3rem;
+      color: var(--color5);
+      background-color: #00000077;
+    }
 }
 
 @media screen and (min-width: 1000px) {
@@ -2085,18 +2101,31 @@ footer {
         background-size: 375.1274px 700px;
         background-position: center;
         transition: all 1s ease-in-out;
-        animation: scrollImage 1s ease-in-out both;
-        animation-timeline: view();
-        animation-range-start: 500px;
-        animation-range-end: 750px;
+     
         box-shadow: 3px 3px 5px #999;
+        opacity: 0;
     }
 
-    @keyframes scrollImage {
-        to {
-            background-position: center bottom;
-        }
-    }
+.showAboutImage{
+  opacity: 0;
+  animation: showImage 2s cubic-bezier(1, 0, 0.8, 1.2) forwards;
+}
+
+@keyframes showImage{
+  to{
+    opacity: 1;
+  }
+}
+.hideAboutImage{
+  opacity: 1;
+  animation: hideImage 2s cubic-bezier(1, 0, 0.8, 1.2) forwards;
+}
+
+@keyframes hideImage{
+  to{
+    opacity: 0;
+  }
+}
 
     .aboutImage:hover {
         background-size: 375.1274px 600px;

@@ -420,10 +420,15 @@
     function validateForm(){
       const SUBMIT_BUTTON = document.getElementById("submit");
       const FORM =  document.querySelector("form");
+      
+    
+
       SUBMIT_BUTTON.addEventListener("click", evt => {
         evt.preventDefault();
-        checkEmail();
         checkName();
+        
+        
+
       });
       
           function checkEmail(){
@@ -432,20 +437,24 @@
             if (!VALID_EMAIL.test(EMAIL)) {
               const EMAIL_INPUT =   document.querySelector("#email");
            EMAIL_INPUT.focus();
-           console.log("wrong email")
+
          createAlertBox("Please, Enter a valid email address");
+            } else{
+                let name = document.querySelector("#name").value;
+          formSubmittedResponse(name);
             }
           }
           
          function checkName(){
-              const NAME = document.querySelector("#name").value;
-            const VALID_NAME = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-            if (!VALID_NAME.test(E
-            NAME)) {
+           const NAME = document.querySelector("#name").value;
+            const VALID_NAME = /^([ \u00c0-\u01ffa-zA-Z'])+$/;
+            if (!VALID_NAME.test(NAME)) {
               const NAME_INPUT =   document.querySelector("#name");
            NAME_INPUT.focus();
          createAlertBox("Please, Enter a proper name");
-            }
+            } else{        
+              checkEmail();
+}
           }
 
           
@@ -459,7 +468,13 @@
            }, 2000)
           }
           
-          
+          function formSubmittedResponse(NAME){
+            const VARIOUS_INPUTS = document.querySelectorAll("input");
+            for (let t = 0; t < VARIOUS_INPUTS.length - 2; t++) {
+              VARIOUS_INPUTS[t].value = "";
+            }
+            createAlertBox(`Dear ${NAME}, thank you for your response!`);
+          }
     }
     
     
@@ -545,6 +560,7 @@
         "appear",
         "hideToo"
     );
+    animateElementsOnScroll(".aboutImage", "showAboutImage", "hideAboutImage");
 
     handleMenuToggleClickEvent();
 })();

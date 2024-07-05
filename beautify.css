@@ -104,7 +104,7 @@ h1 {
 }
 
 .background-shift-too {
-    animation: revealBackgroundToo 1s ease-out forwards;
+    animation: revealBackgroundToo 2s ease-out forwards;
 }
 
 @keyframes revealBackgroundToo {
@@ -120,7 +120,7 @@ h1 {
 }
 
 .background-unshift-too {
-    animation: retractBackgroundToo 1s ease-out forwards;
+    animation: retractBackgroundToo 2s ease-out forwards;
 }
 
 @keyframes retractBackgroundToo {
@@ -544,8 +544,8 @@ article p {
 }
 
 .box {
-    width: 50vw;
-    height: 50vw;
+    width: 85vw;
+    height: 85vw;
     background-color: var(--color4);
     position: relative;
     overflow: hidden;
@@ -556,16 +556,7 @@ article p {
     transition-property: filter, opacity;
     transition-duration: 1s;
     transition-timing-function: linear;
-    animation: expandBox 1s ease-in-out both;
-    animation-timeline: scroll();
-    animation-range-start: 0px;
-    animation-range-end: 100px;
-}
-@keyframes expandBox {
-    to {
-        width: 90vw;
-        height: 90vw;
-    }
+ 
 }
 @starting-style {
     .box {
@@ -807,6 +798,7 @@ form {
     border: 1.5px solid #ffffada1;
     backdrop-filter: blur(50px);
     box-shadow: 0.5px 0.5px 12px #90909b;
+    position: relative;
 }
 
 label,
@@ -1503,7 +1495,30 @@ footer {
     right: 0;
     font-weight: 600;
     padding-left: 1em;
+          font-family: "Montserrat Alternates", Sans-Serif;
+
 }
+
+
+.alertBox{
+  width: 85%;
+  position: absolute;
+  padding: 1rem 0;
+  backdrop-filter: blur(3px);
+  border: 2px solid var(--color7);
+  border-radius: 5px;
+  color: #777;
+  right: 7.5%;
+  bottom: 45%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 2px #777;
+      animation: shake 0.2s;
+
+}
+
 
 @media screen and (min-width: 600px) {
     body {

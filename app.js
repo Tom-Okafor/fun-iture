@@ -410,6 +410,62 @@
             }, 1000);
         }, 5000);
     }
+    
+    function setDate(){
+      const DATE_HOLDER = document.querySelector(".date");
+      const DATE = new Date();
+      DATE_HOLDER.innerText = DATE.getFullYear();
+    }
+    
+    function validateForm(){
+      const SUBMIT_BUTTON = document.getElementById("submit");
+      const FORM =  document.querySelector("form");
+      SUBMIT_BUTTON.addEventListener("click", evt => {
+        evt.preventDefault();
+        checkEmail();
+        checkName();
+      });
+      
+          function checkEmail(){
+            const EMAIL = document.querySelector("#email").value;
+            const VALID_EMAIL = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (!VALID_EMAIL.test(EMAIL)) {
+              const EMAIL_INPUT =   document.querySelector("#email");
+           EMAIL_INPUT.focus();
+           console.log("wrong email")
+         createAlertBox("Please, Enter a valid email address");
+            }
+          }
+          
+         function checkName(){
+              const NAME = document.querySelector("#name").value;
+            const VALID_NAME = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (!VALID_NAME.test(E
+            NAME)) {
+              const NAME_INPUT =   document.querySelector("#name");
+           NAME_INPUT.focus();
+         createAlertBox("Please, Enter a proper name");
+            }
+          }
+
+          
+          function createAlertBox(textContent){
+            const ALERT_BOX = document.createElement("div");
+            ALERT_BOX.innerText = textContent;
+            ALERT_BOX.className = "alertBox";
+           FORM.appendChild(ALERT_BOX);
+           setTimeout(() => {
+             FORM.removeChild(FORM.children[FORM.children.length - 1]);
+           }, 2000)
+          }
+          
+          
+    }
+    
+    
+    validateForm();
+    
+    setDate();
     handleTestimonialsFadeIn();
     slideIcons();
     animateElementsOnScroll("h1", "background-shift", "background-unshift");
